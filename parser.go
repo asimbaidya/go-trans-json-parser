@@ -110,7 +110,8 @@ func parseDomainAndCategoryInDef(d *Definition, raw interface{}) {
 			d.Domains = append(d.Domains, c.(string))
 		}
 	} else {
-		panic("Unknown Number of word Category! Nor linguistic or domain specific")
+
+		panic("Unknown Number of word Category at Definitions")
 	}
 }
 
@@ -158,7 +159,7 @@ func parseDomainAndCategoryInSyn(s *Synonyms, raw interface{}) {
 			s.Domains = append(s.Domains, c.(string))
 		}
 	} else {
-		panic("Unknown Number of word Category! Nor linguistic or domain specific")
+		panic("Unknown Number of word Category at synonyms")
 	}
 }
 
