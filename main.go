@@ -8,14 +8,24 @@ import (
 	"strings"
 )
 
+func mustGetEnv(key string) string {
+	value := os.Getenv(key)
+	if value == "" {
+		panic(fmt.Sprintf("Required environment variable %q is not set or empty", key))
+	}
+	return value
+}
+
 func main() {
 	if len(os.Args) < 2 {
 		fmt.Println("Usage: go run main.go <word>")
 		return
 	}
 
+	transPath := mustGetEnv("TRANS_DIR")
+
 	inputWord := strings.ToLower(os.Args[1])
-	filePath := filepath.Join("./trans", inputWord+".json")
+	filePath := filepath.Join(transPath, inputWord+".json")
 
 	rawBytes, err := os.ReadFile(filePath)
 	if err != nil {
